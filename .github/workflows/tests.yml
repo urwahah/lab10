@@ -3,10 +3,9 @@ on: push
 
 jobs:
   test:
-    runs-on: ubuntu-latest
 	strategy:
 		matrix:
-	        seed: [1, 2, 3, 159]
+			seed: [1, 2, 3, 159]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
