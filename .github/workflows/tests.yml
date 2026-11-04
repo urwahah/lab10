@@ -4,6 +4,9 @@ on: push
 jobs:
   test:
     runs-on: ubuntu-latest
+	strategy:
+      matrix:
+        seed: [1, 2, 3, 159]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -13,3 +16,5 @@ jobs:
         run: pip install numpy pytest
       - name: Run tests
         run: python -m pytest
+	  - name: Estimate pi with seed ${{ matrix.seed }}
+        run: python -c "from darts import estimate_pi; print(estimate_pi(seed=${{ matrix.seed }}))"
